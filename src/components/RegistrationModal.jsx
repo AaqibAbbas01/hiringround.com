@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { supabase } from '../supabase';
 
-const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer' }) => {
+const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialMessage = '' }) => {
     const [role, setRole] = useState(initialRole); // 'employer' or 'interviewer'
     const [captchaValue, setCaptchaValue] = useState('');
     const [captchaError, setCaptchaError] = useState(false);
@@ -25,7 +25,8 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer' }) => {
         location: '',
         linkedin: '',
         experience: '',
-        techStack: ''
+        techStack: '',
+        message: ''
     });
 
     useEffect(() => {
@@ -34,12 +35,14 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer' }) => {
             setIsSubmitted(false);
             // Set initial role if provided
             setRole(initialRole);
+            // Set initial message if provided
+            setFormData(prev => ({ ...prev, message: initialMessage }));
             // Load captcha with a small delay to ensure canvas is ready
             setTimeout(() => {
                 loadCaptchaEnginge(6, 'transparent', '#10b981');
             }, 100);
         }
-    }, [isOpen, initialRole]);
+    }, [isOpen, initialRole, initialMessage]);
 
     const rolesList = ['Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'Mobile Developer', 'QA Engineer', 'DevOps Engineer', 'Data Scientist', 'AI/ML Engineer', 'Product Manager', 'UI/UX Designer', 'Other'];
     const countryCodes = ['+1', '+44', '+91', '+61', '+81', '+49'];
@@ -66,7 +69,8 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer' }) => {
                 work_email: formData.workEmail,
                 phone: formData.phone,
                 country_code: formData.countryCode,
-                hiring_category: formData.hiringCategory
+                hiring_category: formData.hiringCategory,
+                message: formData.message
             } : {
                 role,
                 full_name: formData.fullName,
@@ -76,7 +80,8 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer' }) => {
                 current_company: formData.currentCompany,
                 experience: formData.experience,
                 linkedin: formData.linkedin,
-                tech_stack: formData.techStack
+                tech_stack: formData.techStack,
+                message: formData.message
             };
 
             const { error } = await supabase
@@ -305,6 +310,20 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer' }) => {
                                                             ))}
                                                         </select>
                                                         <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                                                    </div>
+                                                </div>
+
+                                                <div className="space-y-1">
+                                                    <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider ml-1">Message</label>
+                                                    <div className="relative group">
+                                                        <textarea
+                                                            name="message"
+                                                            rows="2"
+                                                            className="w-full bg-gray-50 border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-primary rounded-lg px-3 py-2 text-sm transition-all outline-none resize-none"
+                                                            placeholder="Any specific requirements?"
+                                                            value={formData.message}
+                                                            onChange={handleInputChange}
+                                                        ></textarea>
                                                     </div>
                                                 </div>
                                             </div>

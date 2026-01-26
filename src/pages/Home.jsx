@@ -11,6 +11,7 @@ import RegistrationModal from '../components/RegistrationModal';
 
 const Home = () => {
     const [isRegisterOpen, setIsRegisterOpen] = React.useState(false);
+    const [registrationMessage, setRegistrationMessage] = React.useState('');
 
     React.useEffect(() => {
         const timer = setTimeout(() => {
@@ -19,23 +20,27 @@ const Home = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    const openRegister = () => setIsRegisterOpen(true);
+    const openRegister = (message = '') => {
+        setRegistrationMessage(message);
+        setIsRegisterOpen(true);
+    };
 
     return (
         <div className="bg-white font-sans text-gray-900">
-            <Navbar onRegisterClick={openRegister} />
+            <Navbar onRegisterClick={() => openRegister()} />
             <main>
-                <Hero onRegisterClick={openRegister} />
+                <Hero onRegisterClick={() => openRegister()} />
                 <WhyChooseUs />
                 <Services />
                 <QualityProcess />
                 <HowItWorks />
-                <Pricing />
+                <Pricing onPlanSelect={openRegister} />
                 <TrustedBy />
             </main>
             <RegistrationModal
                 isOpen={isRegisterOpen}
                 onClose={() => setIsRegisterOpen(false)}
+                initialMessage={registrationMessage}
             />
         </div>
     );

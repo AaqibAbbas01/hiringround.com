@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Check, Info } from 'lucide-react';
 
-const Pricing = () => {
+const Pricing = ({ onPlanSelect }) => {
     const [activeTab, setActiveTab] = useState('pay-per-candidate');
+
+    const handlePlanSelect = (planName, price) => {
+        if (onPlanSelect) {
+            onPlanSelect(`Interested in ${planName} plan (Price: ${price})`);
+        }
+    };
 
     return (
         <div id="pricing" className="py-20 bg-white">
@@ -55,7 +61,10 @@ const Pricing = () => {
                                     Summary Report
                                 </li>
                             </ul>
-                            <button className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold rounded-xl transition-colors">
+                            <button
+                                onClick={() => handlePlanSelect('Starter Screening', '₹499/candidate')}
+                                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold rounded-xl transition-colors"
+                            >
                                 Choose Starter
                             </button>
                         </div>
@@ -88,7 +97,10 @@ const Pricing = () => {
                                     Detailed Scorecard
                                 </li>
                             </ul>
-                            <button className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors shadow-lg shadow-primary/25">
+                            <button
+                                onClick={() => handlePlanSelect('Pro Interview', '₹1,999')}
+                                className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors shadow-lg shadow-primary/25"
+                            >
                                 Get Started
                             </button>
                         </div>
@@ -118,7 +130,10 @@ const Pricing = () => {
                                     Extended Report
                                 </li>
                             </ul>
-                            <button className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold rounded-xl transition-colors">
+                            <button
+                                onClick={() => handlePlanSelect('Premium Deep Dive', '₹6,999')}
+                                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold rounded-xl transition-colors"
+                            >
                                 Contact Sales
                             </button>
                         </div>
@@ -145,7 +160,10 @@ const Pricing = () => {
                                     <Check className="w-5 h-5 text-accent" /> Priority Scheduling
                                 </li>
                             </ul>
-                            <button className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors">
+                            <button
+                                onClick={() => handlePlanSelect('Startup Subscription', '₹19,999/month')}
+                                className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors"
+                            >
                                 Subscribe Now
                             </button>
                         </div>
@@ -168,7 +186,10 @@ const Pricing = () => {
                                     <Check className="w-5 h-5 text-accent" /> Custom Rubrics Included
                                 </li>
                             </ul>
-                            <button className="w-full py-3 bg-gray-800 hover:bg-gray-900 text-white font-bold rounded-xl transition-colors">
+                            <button
+                                onClick={() => handlePlanSelect('Scale Subscription', '₹49,999/month')}
+                                className="w-full py-3 bg-gray-800 hover:bg-gray-900 text-white font-bold rounded-xl transition-colors"
+                            >
                                 Talk to Sales
                             </button>
                         </div>

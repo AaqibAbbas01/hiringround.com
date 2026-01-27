@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
                 <p className="mb-4">Last Updated: January 2026</p>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">1. Introduction</h3>
                 <p className="mb-4">
-                    Welcome to SkillxHire. We are committed to protecting your personal information and your right to privacy.
+                    Welcome to Hiring Round. We are committed to protecting your personal information and your right to privacy.
                 </p>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">2. Information We Collect</h3>
                 <p className="mb-4">
@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
                 </p>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">4. Contact Us</h3>
                 <p>
-                    If you have questions or comments about this policy, you may email us at privacy@skillxhire.com.
+                    If you have questions or comments about this policy, you may email us at privacy@hiringround.com.
                 </p>
             </div>
         </PageLayout>

@@ -33,7 +33,7 @@ const HowItWorks = () => {
         <div id="how-it-works" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-gray-900">How SkillxHire Works</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">How Hiring Round Works</h2>
                     <p className="mt-4 text-xl text-gray-500">A seamless extension of your recruitment team.</p>
                 </div>
 

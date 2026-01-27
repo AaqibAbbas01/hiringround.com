@@ -143,7 +143,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                 <ShieldCheck className="w-10 h-10 text-white mb-4" />
                                 <h3 className="text-xl font-bold text-white mb-1 leading-tight">Secure Hiring</h3>
                                 <p className="text-primary-light/90 text-[11px] leading-relaxed">
-                                    Join the elite network using SkillxHire.
+                                    Join the elite network using Hiring Round.
                                 </p>
                             </div>
 
@@ -186,7 +186,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                     <div className="space-y-2">
                                         <p className="text-gray-600 font-medium">Your submission was successful.</p>
                                         <p className="text-gray-500 text-sm leading-relaxed px-4">
-                                            Our team will review your details and get back to you shortly. Welcome to the SkillxHire community!
+                                            Our team will review your details and get back to you shortly. Welcome to the Hiring Round community!
                                         </p>
                                     </div>
                                     <button
@@ -200,7 +200,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                 <>
                                     <div className="mb-4">
                                         <h2 className="text-2xl font-bold text-gray-900 mb-1">Get Started</h2>
-                                        <p className="text-gray-500 text-xs">Begin your journey with SkillxHire.</p>
+                                        <p className="text-gray-500 text-xs">Begin your journey with Hiring Round.</p>
                                     </div>
 
                                     {/* Role Toggle */}

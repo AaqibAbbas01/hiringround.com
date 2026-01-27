@@ -11,7 +11,7 @@ const Navbar = ({ onRegisterClick }) => {
                     <div className="flex-shrink-0 flex items-center">
                         {/* Logo */}
                         <a href="/" className="flex items-center gap-2">
-                            <span className="text-2xl font-bold text-primary">SkillxHire</span>
+                            <span className="text-2xl font-bold text-primary">Hiring Round</span>
                         </a>
                     </div>
 

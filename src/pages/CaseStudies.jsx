@@ -11,8 +11,8 @@ const CaseStudies = () => {
                     </div>
                     <div className="w-full md:w-2/3">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">How TechCorp Reduced Hiring Time by 50%</h3>
-                        <p className="text-gray-600 mb-6">
-                            "SkillxHire's on-demand interviewers allowed us to scale our hiring capability instantly without burning out our engineering team."
+                        <p className="text-gray-610 mb-6">
+                            "Hiring Round's on-demand interviewers allowed us to scale our hiring capability instantly without burning out our engineering team."
                         </p>
                         <div className="flex gap-8">
                             <div>

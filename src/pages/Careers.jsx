@@ -3,7 +3,7 @@ import PageLayout from '../components/PageLayout';
 
 const Careers = () => {
     return (
-        <PageLayout title="Careers at SkillxHire">
+        <PageLayout title="Careers at Hiring Round">
             {({ openRegister }) => (
                 <div className="text-center py-12">
                     <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Team</h2>

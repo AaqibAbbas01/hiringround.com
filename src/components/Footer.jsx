@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
 
                     <div className="col-span-2 md:col-span-1">
-                        <Link to="/" className="text-2xl font-bold text-white mb-4 block">SkillxHire</Link>
+                        <Link to="/" className="text-2xl font-bold text-white mb-4 block">Hiring Round</Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6">
                             Reinventing technical recruitment with expert interviews on demand.
                         </p>
@@ -58,7 +58,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-gray-800 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                    <p>&copy; {new Date().getFullYear()} SkillxHire. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Hiring Round. All rights reserved.</p>
                     <div className="flex space-x-6 mt-4 md:mt-0">
                         <span>Made in India for the World 🇮🇳</span>
                     </div>

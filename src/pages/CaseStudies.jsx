@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const CaseStudies = () => {
     return (
         <PageLayout title="Case Studies">
+            <SEO
+                title="Case Studies"
+                description="Explore how Hiring Round helps companies reduce hiring time and improve candidate satisfaction."
+            />
             <div className="space-y-8">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-center">
                     <div className="w-full md:w-1/3 h-48 bg-gray-100 rounded-xl flex items-center justify-center">

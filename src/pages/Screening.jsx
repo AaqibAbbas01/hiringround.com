@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const Screening = () => {
     return (
         <PageLayout title="Screening Services">
+            <SEO
+                title="Screening Services"
+                description="Comprehensive candidate screening including resume validation, phone screens, and cultural fit assessment."
+            />
             <div className="prose max-w-none">
                 <p className="text-lg text-gray-600 mb-8">
                     Rapidly filter candidates with our comprehensive screening process, ensuring only the most qualified talent reaches your final rounds.

@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const AboutUs = () => {
     return (
         <PageLayout title="About Us">
+            <SEO
+                title="About Us"
+                description="Hiring Round transforms technical hiring by evaluating engineering talent with engineers."
+            />
             <div className="prose max-w-none text-gray-600">
                 <p className="text-lg mb-6">
                     Hiring Round is on a mission to transform technical hiring. We believe that engineering talent should be evaluated by engineers, for engineers.

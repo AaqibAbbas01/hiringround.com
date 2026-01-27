@@ -3,6 +3,7 @@ import PageLayout from '../components/PageLayout';
 import { Mail, MapPin, Phone, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '../supabase';
+import SEO from '../components/SEO';
 
 const Contact = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +46,10 @@ const Contact = () => {
 
     return (
         <PageLayout title="Contact Us">
+            <SEO
+                title="Contact Us"
+                description="Get in touch with Hiring Round for technical interview outsourcing services and support."
+            />
             <div className="grid md:grid-cols-2 gap-12">
                 <div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>

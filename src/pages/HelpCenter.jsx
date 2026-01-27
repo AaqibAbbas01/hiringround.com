@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const HelpCenter = () => {
     return (
         <PageLayout title="Help Center">
+            <SEO
+                title="Help Center"
+                description="Find answers to common questions about Hiring Round's services and platform."
+            />
             <div className="max-w-3xl mx-auto">
                 <div className="relative mb-12">
                     <input type="text" className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-primary/20 outline-none text-lg" placeholder="Search for help..." />

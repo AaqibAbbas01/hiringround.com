@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const AssessmentTests = () => {
     return (
         <PageLayout title="Assessment Tests">
+            <SEO
+                title="Assessment Tests"
+                description="Automated and live coding assessments designed to mimic real-world engineering challenges."
+            />
             <div className="prose max-w-none">
                 <p className="text-lg text-gray-600 mb-6">
                     Validate skills with automated and live coding assessments designed to mimic real-world engineering challenges.

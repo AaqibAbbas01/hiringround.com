@@ -1,6 +1,7 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
 import Pricing from '../components/Pricing'; // Reusing the existing component!
+import SEO from '../components/SEO';
 
 const PricingPage = () => {
     // We already have a Pricing component, but it might need to be wrapped.
@@ -10,6 +11,10 @@ const PricingPage = () => {
     // The existing Pricing component is likely a full section.
     return (
         <PageLayout title="Pricing Plans">
+            <SEO
+                title="Pricing"
+                description="Transparent pricing for teams of all sizes. Choose the plan that fits your technical hiring needs."
+            />
             <div className="text-center mb-8">
                 <p className="text-lg text-gray-600">Transparent pricing for teams of all sizes.</p>
             </div>

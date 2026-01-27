@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const Careers = () => {
     return (
         <PageLayout title="Careers at Hiring Round">
+            <SEO
+                title="Careers"
+                description="Join the Hiring Round team. We are always looking for passionate individuals and expert interviewers."
+            />
             {({ openRegister }) => (
                 <div className="text-center py-12">
                     <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Team</h2>

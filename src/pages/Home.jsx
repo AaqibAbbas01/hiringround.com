@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import SEO from '../components/SEO';
 import Hero from '../components/Hero';
 import WhyChooseUs from '../components/WhyChooseUs';
 import TrustedBy from '../components/TrustedBy';
@@ -27,6 +28,7 @@ const Home = () => {
 
     return (
         <div className="bg-white font-sans text-gray-900">
+            <SEO />
             <Navbar onRegisterClick={() => openRegister()} />
             <main>
                 <Hero onRegisterClick={() => openRegister()} />

@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const Blog = () => {
     return (
         <PageLayout title="Blog">
+            <SEO
+                title="Blog"
+                description="Insights, tips, and trends on technical hiring, interviewing, and recruitment."
+            />
             <div className="grid md:grid-cols-3 gap-8">
                 {[1, 2, 3].map((i) => (
                     <div key={i} className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">

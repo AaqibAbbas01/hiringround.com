@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const TechnicalInterviews = () => {
     return (
         <PageLayout title="Technical Interviews">
+            <SEO
+                title="Technical Interviews"
+                description="Expert-led technical evaluations by senior engineers from top tech companies."
+            />
             <div className="prose max-w-none">
                 <p className="text-lg text-gray-600 mb-6">
                     Our technical interview service connects you with elite industry experts who conduct rigorous technical evaluations.

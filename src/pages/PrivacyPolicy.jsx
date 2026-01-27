@@ -1,9 +1,14 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 const PrivacyPolicy = () => {
     return (
         <PageLayout title="Privacy Policy">
+            <SEO
+                title="Privacy Policy"
+                description="Privacy Policy for Hiring Round. Learn how we collect, use, and protect your personal information."
+            />
             <div className="prose max-w-none text-gray-600">
                 <p className="mb-4">Last Updated: January 2026</p>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">1. Introduction</h3>

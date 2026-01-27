@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ onRegisterClick }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,9 +11,10 @@ const Navbar = ({ onRegisterClick }) => {
                 <div className="flex justify-between h-20 items-center">
                     <div className="flex-shrink-0 flex items-center">
                         {/* Logo */}
-                        <a href="/" className="flex items-center gap-2">
-                            <span className="text-2xl font-bold text-primary">Hiring Round</span>
-                        </a>
+                        {/* Logo */}
+                        <Link to="/" className="flex items-center gap-2">
+                            <img src="/logo.png" alt="Hiring Round" className="h-10 w-auto" />
+                        </Link>
                     </div>
 
                     {/* Desktop Menu */}
@@ -20,7 +22,7 @@ const Navbar = ({ onRegisterClick }) => {
                         <a href="/#services" className="text-gray-600 hover:text-primary font-medium transition-colors">Services</a>
                         <a href="/#how-it-works" className="text-gray-600 hover:text-primary font-medium transition-colors">How it Works</a>
                         <a href="/#pricing" className="text-gray-600 hover:text-primary font-medium transition-colors">Pricing</a>
-                        <a href="/company/contact" className="text-gray-600 hover:text-primary font-medium transition-colors">Contact Us</a>
+                        <Link to="/company/contact" className="text-gray-600 hover:text-primary font-medium transition-colors">Contact Us</Link>
                     </div>
 
                     <div className="hidden md:flex items-center space-x-4">
@@ -51,7 +53,7 @@ const Navbar = ({ onRegisterClick }) => {
                         <a href="/#services" className="block text-gray-600 hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Services</a>
                         <a href="/#how-it-works" className="block text-gray-600 hover:text-primary font-medium" onClick={() => setIsOpen(false)}>How it Works</a>
                         <a href="/#pricing" className="block text-gray-600 hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Pricing</a>
-                        <a href="/company/contact" className="block text-gray-600 hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Contact Us</a>
+                        <Link to="/company/contact" className="block text-gray-600 hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Contact Us</Link>
                         <div className="pt-4 border-t border-gray-100 flex flex-col space-y-3">
                             <button
                                 onClick={() => {

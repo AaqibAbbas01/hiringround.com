@@ -9,7 +9,9 @@ const Footer = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
 
                     <div className="col-span-2 md:col-span-1">
-                        <Link to="/" className="text-2xl font-bold text-white mb-4 block">Hiring Round</Link>
+                        <Link to="/" className="mb-4 block">
+                            <img src="/logo.png" alt="Hiring Round" className="h-8 w-auto grayscale brightness-0 invert" />
+                        </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6">
                             Reinventing technical recruitment with expert interviews on demand.
                         </p>

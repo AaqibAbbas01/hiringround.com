@@ -10,13 +10,13 @@ const Footer = () => {
 
                     <div className="col-span-2 md:col-span-1">
                         <Link to="/" className="mb-4 block">
-                            <img src="/logo.png" alt="Hiring Round" className="h-8 w-auto grayscale brightness-0 invert" />
+                            <img src="/logo.png" alt="Hiring Round" className="h-16 w-auto" />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6">
                             Reinventing technical recruitment with expert interviews on demand.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                            <a href="https://www.linkedin.com/company/hiring-round/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                                 <Linkedin className="w-5 h-5" />
                             </a>
                             <a href="#" className="text-gray-400 hover:text-white transition-colors">

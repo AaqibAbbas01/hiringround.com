@@ -13,7 +13,7 @@ const Navbar = ({ onRegisterClick }) => {
                         {/* Logo */}
                         {/* Logo */}
                         <Link to="/" className="flex items-center gap-2">
-                            <img src="/logo.png" alt="Hiring Round" className="h-10 w-auto" />
+                            <img src="/logo.png" alt="Hiring Round" className="h-20 w-auto" />
                         </Link>
                     </div>
 

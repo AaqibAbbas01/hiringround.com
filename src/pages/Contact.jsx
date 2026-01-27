@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageLayout from '../components/PageLayout';
 import { Mail, MapPin, Phone, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '../supabase';
 import SEO from '../components/SEO';
+import { useLocation } from 'react-router-dom';
 
 const Contact = () => {
+    const location = useLocation();
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [formData, setFormData] = useState({
@@ -13,6 +15,12 @@ const Contact = () => {
         email: '',
         message: ''
     });
+
+    useEffect(() => {
+        if (location.state && location.state.message) {
+            setFormData(prev => ({ ...prev, message: location.state.message }));
+        }
+    }, [location]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

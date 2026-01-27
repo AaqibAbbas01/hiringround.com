@@ -69,7 +69,7 @@ const Hero = ({ onRegisterClick }) => {
                                     <div className="w-3 h-3 rounded-full bg-green-400"></div>
                                 </div>
                                 <div className="ml-4 bg-white px-3 py-1 rounded-md text-xs text-gray-400 border border-gray-200 flex-1">
-                                    interview-session-live.mp4
+                                    hiringround.online
                                 </div>
                             </div>
                             <div className="p-1 bg-gray-900 aspect-video relative flex items-center justify-center">

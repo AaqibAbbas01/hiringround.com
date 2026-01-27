@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { Check, Info } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Pricing = ({ onPlanSelect }) => {
     const [activeTab, setActiveTab] = useState('pay-per-candidate');
+    const navigate = useNavigate();
 
     const handlePlanSelect = (planName, price) => {
         if (onPlanSelect) {
             onPlanSelect(`Interested in ${planName} plan (Price: ${price})`);
         }
+    };
+
+    const handleEnterpriseContact = () => {
+        navigate('/company/contact', {
+            state: { message: "I am interested in Enterprise/Agency solutions. Please tell me more about custom SLAs and ATS integrations." }
+        });
     };
 
     return (
@@ -206,7 +214,10 @@ const Pricing = ({ onPlanSelect }) => {
                             <p className="text-gray-600 text-sm">We offer custom SLAs, ATS integrations, and white-label screening for staffing firms.</p>
                         </div>
                     </div>
-                    <button className="px-6 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <button
+                        onClick={handleEnterpriseContact}
+                        className="px-6 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
+                    >
                         Contact Enterprise Sales
                     </button>
                 </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PageLayout from '../components/PageLayout';
 import { Mail, MapPin, Phone, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { supabase } from '../supabase';
 import SEO from '../components/SEO';
 import { useLocation } from 'react-router-dom';
@@ -98,11 +97,7 @@ const Contact = () => {
 
                 <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 flex flex-col justify-center min-h-[400px]">
                     {isSubmitted ? (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-center space-y-4"
-                        >
+                        <div className="text-center space-y-4">
                             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <CheckCircle className="w-8 h-8 text-primary" />
                             </div>
@@ -116,7 +111,7 @@ const Contact = () => {
                             >
                                 Send another message
                             </button>
-                        </motion.div>
+                        </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>

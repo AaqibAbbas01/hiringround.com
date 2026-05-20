@@ -15,10 +15,7 @@ const Home = () => {
     const [registrationMessage, setRegistrationMessage] = React.useState('');
 
     React.useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsRegisterOpen(true);
-        }, 1000); // Small delay for better UX
-        return () => clearTimeout(timer);
+        return undefined;
     }, []);
 
     const openRegister = (message = '') => {

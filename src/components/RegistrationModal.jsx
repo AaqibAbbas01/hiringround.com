@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { X, User, Briefcase, Building, Mail, Phone, Linkedin, Code, ChevronDown, CheckCircle, MapPin, ShieldCheck, RefreshCw } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, User, Briefcase, Building, Mail, Phone, Linkedin, Code, ChevronDown, CheckCircle, MapPin, ShieldCheck, RefreshCw, Search } from 'lucide-react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { supabase } from '../supabase';
+import { skillOptions } from '../data/onboardingOptions';
 
 const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialMessage = '' }) => {
     const [role, setRole] = useState(initialRole); // 'employer' or 'interviewer'
@@ -10,6 +10,10 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
     const [captchaError, setCaptchaError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [skillSearch, setSkillSearch] = useState('');
+    const [showSkillDropdown, setShowSkillDropdown] = useState(false);
+    const skillDropdownRef = useRef(null);
     const [formData, setFormData] = useState({
         companyName: '',
         workEmail: '',
@@ -33,6 +37,9 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
         if (isOpen) {
             // Reset submission state when modal opens
             setIsSubmitted(false);
+            setSelectedSkills([]);
+            setSkillSearch('');
+            setShowSkillDropdown(false);
             // Set initial role if provided
             setRole(initialRole);
             // Set initial message if provided
@@ -43,6 +50,17 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
             }, 100);
         }
     }, [isOpen, initialRole, initialMessage]);
+
+    // Close skill dropdown on outside click
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (skillDropdownRef.current && !skillDropdownRef.current.contains(e.target)) {
+                setShowSkillDropdown(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const rolesList = ['Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'Mobile Developer', 'QA Engineer', 'DevOps Engineer', 'Data Scientist', 'AI/ML Engineer', 'Product Manager', 'UI/UX Designer', 'Other'];
     const countryCodes = ['+1', '+44', '+91', '+61', '+81', '+49'];
@@ -80,7 +98,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                 current_company: formData.currentCompany,
                 experience: formData.experience,
                 linkedin: formData.linkedin,
-                tech_stack: formData.techStack,
+                tech_stack: selectedSkills.join(', '),
                 message: formData.message
             };
 
@@ -114,24 +132,17 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
     };
 
     return (
-        <AnimatePresence>
+        <>
             {isOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto px-4 py-8">
                     {/* Backdrop */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                    <div
                         onClick={onClose}
                         className="fixed inset-0 bg-secondary/80 backdrop-blur-md"
-                    ></motion.div>
+                    ></div>
 
                     {/* Modal */}
-                    <motion.div
-                        initial={{ scale: 0.95, opacity: 0, y: 20 }}
-                        animate={{ scale: 1, opacity: 1, y: 0 }}
-                        exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                        transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
+                    <div
                         className="relative w-full max-w-xl bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row min-h-0"
                     >
                         {/* Left Side - Visual Sidebar */}
@@ -174,11 +185,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                             </button>
 
                             {isSubmitted ? (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="text-center space-y-4 py-8"
-                                >
+                                <div className="text-center space-y-4 py-8">
                                     <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                                         <CheckCircle className="w-10 h-10 text-primary" />
                                     </div>
@@ -195,7 +202,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                     >
                                         Back to Website
                                     </button>
-                                </motion.div>
+                                </div>
                             ) : (
                                 <>
                                     <div className="mb-4">
@@ -442,19 +449,72 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                                 </div>
 
                                                 <div className="space-y-1">
-                                                    <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider ml-1">Tech Stack / More Details</label>
-                                                    <div className="relative group">
-                                                        <Code className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 group-focus-within:text-primary transition-colors" />
-                                                        <input
-                                                            type="text"
-                                                            name="techStack"
-                                                            required
-                                                            className="w-full bg-gray-50 border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-primary rounded-lg pl-9 pr-3 py-2 text-sm transition-all outline-none"
-                                                            placeholder="React, Node.js, System Design, etc."
-                                                            value={formData.techStack}
-                                                            onChange={handleInputChange}
-                                                        />
+                                                    <label className="text-[10px] font-bold text-gray-700 uppercase tracking-wider ml-1">Tech Stack / Skills</label>
+                                                    <div className="relative" ref={skillDropdownRef}>
+                                                        <div className="relative group">
+                                                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                                                            <input
+                                                                type="text"
+                                                                className="w-full bg-gray-50 border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-primary rounded-lg pl-9 pr-3 py-2 text-sm transition-all outline-none"
+                                                                placeholder="Search skills (e.g. React, Python…)"
+                                                                value={skillSearch}
+                                                                onChange={(e) => {
+                                                                    setSkillSearch(e.target.value);
+                                                                    setShowSkillDropdown(true);
+                                                                }}
+                                                                onFocus={() => setShowSkillDropdown(true)}
+                                                            />
+                                                        </div>
+                                                        {showSkillDropdown && skillSearch.trim() !== '' && (
+                                                            <ul className="absolute z-50 mt-1 w-full bg-white rounded-lg shadow-lg ring-1 ring-gray-200 max-h-40 overflow-y-auto text-sm">
+                                                                {skillOptions
+                                                                    .filter(s =>
+                                                                        s.toLowerCase().includes(skillSearch.toLowerCase()) &&
+                                                                        !selectedSkills.includes(s)
+                                                                    )
+                                                                    .map(skill => (
+                                                                        <li
+                                                                            key={skill}
+                                                                            onMouseDown={(e) => {
+                                                                                e.preventDefault();
+                                                                                setSelectedSkills(prev => [...prev, skill]);
+                                                                                setSkillSearch('');
+                                                                                setShowSkillDropdown(false);
+                                                                            }}
+                                                                            className="px-3 py-2 hover:bg-primary/10 hover:text-primary cursor-pointer transition-colors"
+                                                                        >
+                                                                            {skill}
+                                                                        </li>
+                                                                    ))
+                                                                }
+                                                                {skillOptions.filter(s =>
+                                                                    s.toLowerCase().includes(skillSearch.toLowerCase()) &&
+                                                                    !selectedSkills.includes(s)
+                                                                ).length === 0 && (
+                                                                    <li className="px-3 py-2 text-gray-400 text-xs">No matching skills</li>
+                                                                )}
+                                                            </ul>
+                                                        )}
                                                     </div>
+                                                    {selectedSkills.length > 0 && (
+                                                        <div className="flex flex-wrap gap-1.5 mt-2">
+                                                            {selectedSkills.map(skill => (
+                                                                <span
+                                                                    key={skill}
+                                                                    className="inline-flex items-center gap-1 px-2.5 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full"
+                                                                >
+                                                                    {skill}
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() => setSelectedSkills(prev => prev.filter(s => s !== skill))}
+                                                                        className="hover:text-red-500 transition-colors ml-0.5"
+                                                                    >
+                                                                        <X className="w-3 h-3" />
+                                                                    </button>
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         )}
@@ -496,9 +556,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                     </form>
 
                                     <div className="mt-5 space-y-3">
-                                        <motion.button
-                                            whileHover={{ scale: 1.01 }}
-                                            whileTap={{ scale: 0.99 }}
+                                        <button
                                             type="submit"
                                             disabled={isLoading}
                                             onClick={handleSubmit}
@@ -512,7 +570,7 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                                     <ChevronDown className="-rotate-90 w-4 h-4" />
                                                 </>
                                             )}
-                                        </motion.button>
+                                        </button>
                                         <p className="text-[9px] text-gray-400 text-center uppercase tracking-widest leading-relaxed">
                                             By submitting, you agree to our <a href="#" className="text-primary hover:underline font-bold">Privacy Policy</a>.
                                         </p>
@@ -520,10 +578,10 @@ const RegistrationModal = ({ isOpen, onClose, initialRole = 'employer', initialM
                                 </>
                             )}
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             )}
-        </AnimatePresence>
+        </>
     );
 };
 
